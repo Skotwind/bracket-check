@@ -7,7 +7,7 @@ class CommonTools:
     bracket_numbers = [40, 41, 91, 93, 123, 125]  # utf-8
     random_range = range(10000)
     types = (int, float, complex, bool, tuple, list, set, dict)
-    start_temp = "cd ../.. && python3 -m bracket_check {}"
+    start_temp = "python3 -m bracket_check {}"
     valid_for_random_path = (0, 512, 32512)
 
     @staticmethod
