@@ -1,4 +1,4 @@
-import app
+import bracket_check as app
 from random import choice
 from os import system as sys_cmd, getcwd as current_dir
 
@@ -7,7 +7,7 @@ class CommonTools:
     bracket_numbers = [40, 41, 91, 93, 123, 125]  # utf-8
     random_range = range(10000)
     types = (int, float, complex, bool, tuple, list, set, dict)
-    start_temp = "cd .. && python3 -m app {}"
+    start_temp = "cd ../.. && python3 -m bracket_check {}"
     valid_for_random_path = (0, 512, 32512)
 
     @staticmethod
@@ -23,31 +23,31 @@ class TestAppAsLib:
 
     def test_empty_string(self):
         data = ""
-        assert app.bracket_check(data)
+        assert app(data)
 
     def test_correct_value(self):
         data = "{[()]}"
-        assert app.bracket_check(data)
+        assert app(data)
 
     def test_invalid_value(self):
         data = "{[(}])"
-        assert not app.bracket_check(data)
+        assert not app(data)
 
     def test_empty_val(self):
-        assert app.bracket_check()
+        assert app()
 
     def test_any_type(self):
         for type_of_data in CommonTools.types:
-            assert app.bracket_check(type_of_data)
+            assert app(type_of_data)
 
     def test_any_type_called(self):
         for type_of_data in CommonTools.types:
-            assert app.bracket_check(type_of_data())
+            assert app(type_of_data())
 
     def test_all_vars(self):
         cases = {CommonTools.generate_brackets(5) for _ in range(100000)}
         for case in cases:
-            assert not app.bracket_check(case)
+            assert not app(case)
 
 
 class TestAppAsUtil:
