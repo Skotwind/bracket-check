@@ -1,5 +1,5 @@
+from .handler import StaplesDataObject, DataExtractor
 
 
 def bracket_check(*args, **kwargs):
-    print("it's work")
-
+    return StaplesDataObject(DataExtractor.get_data(*args, **kwargs)).run()

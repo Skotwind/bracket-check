@@ -4,7 +4,7 @@ import sys
 class DataExtractor:
 
     @staticmethod
-    def get_data(*args):
+    def get_data(*args, **kwargs):
         cmd = args or sys.argv[1:]
         data, is_path = DataExtractor.this_is_the_way(*cmd)
         prep_data = DataExtractor.get_file_data(data) if is_path else data
