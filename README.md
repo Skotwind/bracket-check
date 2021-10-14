@@ -28,21 +28,21 @@ bracket_check("you/path/file.py")
 ## **Like a utility.**
 ### **For text:**
 ```
-$ bracket_check "your text"
+$ python3 -m bracket_check "your text"
 ```
 or
 ```
-$ bracket_check 'your text'
+$ python3 -m bracket_check 'your text'
 ```
 or
 ```
-$ bracket_check your_text
+$ python3 -m bracket_check your_text
 ```
 
 
 ### **For files:**
 ```
-$ bracket_check you/path/file.py
+$ python3 -m bracket_check you/path/file.py
 ```
 
 
