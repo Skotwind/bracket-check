@@ -33,3 +33,62 @@ class DataExtractor:
             is_path = str_path.find('/') != -1 and str_path[-4:].find('.') != -1
             is_path = is_path or (len(str_path) < 20 and str_path[-4:].find('.') != -1) or False
         return path, is_path
+
+
+class StaplesControl:
+
+    def __init__(self, data):
+        self.stap = ("()", "[]", "{}")
+        self.slen = 0
+        self.data = data
+
+    def remove_part(self, part: str):
+        """Remove part from data."""
+        self.data = self.data.replace(part, "")
+
+    def one_step(self):
+        """Deletes parts of the data one by one."""
+        for part in self.stap:
+            self.remove_part(part)
+            self.remove_part(part)
+
+    def clear_string(self):
+        """Removes parts from the data as long as the data can be deleted."""
+        while self.slen != len(self.data):
+            self.slen = len(self.data)
+            self.one_step()
+
+    def result(self) -> bool:
+        """Returns True if true otherwise False."""
+        return not self.data
+
+    def run(self):
+        self.clear_string()
+        return self.result()
+
+
+class DataPreparation:
+    white_list_chr = ['(', '[', '{', ')', ']', '}']
+
+    @staticmethod
+    def valid_character(character: str) -> bool:
+        return character in DataPreparation.white_list_chr
+
+    @staticmethod
+    def clean_string(string: str) -> filter:
+        return filter(DataPreparation.valid_character, string)
+
+    @staticmethod
+    def get_clean_data(data: str) -> str:
+        return "".join(DataPreparation.clean_string(data))
+
+
+class StaplesDataObject:
+
+    def __init__(self, data):
+        self.data = data
+        self.prep = DataPreparation
+        self.ctrl = StaplesControl
+
+    def run(self):
+        return StaplesControl(DataPreparation.get_clean_data(self.data)).run()
