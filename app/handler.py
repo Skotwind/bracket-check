@@ -4,14 +4,19 @@ import sys
 class DataExtractor:
 
     @staticmethod
-    def get_data(*args, **kwargs):
+    def get_data(*args, **kwargs) -> str:
+        """Data retrieval.
+        If the data are entered on the command line, then we use them.
+        In this case we work as a utility.
+        Otherwise, if the data came in 'args', the program works in library mode.
+        There is no third way."""
         cmd = args or sys.argv[1:]
         data, is_path = DataExtractor.this_is_the_way(*cmd)
         prep_data = DataExtractor.get_file_data(data) if is_path else data
         return prep_data
 
     @staticmethod
-    def get_file_data(path):
+    def get_file_data(path: str) -> str:
         data = ""
         try:
             with open(path) as f:
@@ -24,7 +29,9 @@ class DataExtractor:
         return data or path
 
     @staticmethod
-    def this_is_the_way(path='', *args):
+    def this_is_the_way(path='', *args) -> (str, bool):
+        """"The first element of the input data is always either a path or data.
+        If there is nothing on the first position then the user has not entered anything."""
         is_path = False
         if not isinstance(path, str):
             return "", None
@@ -68,6 +75,7 @@ class StaplesControl:
 
 
 class DataPreparation:
+    """This class is designed to remove all characters from the data except those in 'white_list_chr'."""
     white_list_chr = ['(', '[', '{', ')', ']', '}']
 
     @staticmethod

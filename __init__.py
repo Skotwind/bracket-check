@@ -1,7 +1,10 @@
 import sys
+
 from .app import bracket_checker
 
-class CallableModule():
+
+class CallableModule:
+    """A class that makes the module callable."""
 
     def __init__(self, wrapped):
         self._wrapped = wrapped
@@ -12,8 +15,9 @@ class CallableModule():
     def __getattr__(self, attr):
         return object.__getattribute__(self._wrapped, attr)
 
+
 sys.modules[__name__] = CallableModule(sys.modules[__name__])
 
+
 def main(*args, **kwargs):
-	# print(app)
     return bracket_checker(*args, **kwargs)
