@@ -44,6 +44,12 @@ class TestAppAsLib:
         for type_of_data in CommonTools.types:
             assert app(type_of_data())
 
+    def test_for_path_true(self):
+        assert app(f'{current_dir()}/bracket_check/tests/training_set.py')
+
+    def test_for_path_false(self):
+        assert app(f'{current_dir()}/bracket_check/tests/training_set_broke.txt') is False
+
     def test_all_vars(self):
         cases = {CommonTools.generate_brackets(5) for _ in range(100000)}
         for case in cases:
