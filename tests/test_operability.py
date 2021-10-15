@@ -1,13 +1,22 @@
 import bracket_check as app
 from random import choice
-from os import system as sys_cmd, getcwd as current_dir
+from os import system as sys_cmd, getcwd as current_dir, listdir
+
+
+def get_current_path():
+    if 'bracket_check' in listdir(current_dir()):
+        return 'python3 -m bracket_check'
+    elif 'bracket-check' in listdir(current_dir()):
+        return 'cd bracket-check && python3 -m bracket_check && cd ..'
+    else:
+        return 'cd .. && python3 -m bracket_check'
 
 
 class CommonTools:
     bracket_numbers = [40, 41, 91, 93, 123, 125]  # utf-8
     random_range = range(10000)
     types = (int, float, complex, bool, tuple, list, set, dict)
-    start_temp = "python3 -m bracket_check {}"
+    start_temp = get_current_path()
     valid_for_random_path = (0, 512, 32512)
 
     @staticmethod
