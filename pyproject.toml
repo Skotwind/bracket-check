@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "bracket-check"
-version = "0.1.0"
+version = "0.1.1"
 description = ""
 authors = ["skotwind <skotwind@gmail.com>"]
 
