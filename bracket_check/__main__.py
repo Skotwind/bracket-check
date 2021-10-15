@@ -1,4 +1,4 @@
-import app
+from bracket_check import app
 
 if __name__ == '__main__':
     print(app.bracket_checker())

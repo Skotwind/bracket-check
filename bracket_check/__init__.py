@@ -1,8 +1,8 @@
 import sys
 
-from app import bracket_checker
+from bracket_check.app import bracket_checker
 
-__version__ = '0.1.1'
+__version__ = '0.1.2'
 
 class CallableModule:
     """A class that makes the module callable."""
