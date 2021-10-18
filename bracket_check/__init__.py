@@ -4,6 +4,7 @@ from bracket_check.app import bracket_checker
 
 __version__ = '0.1.2'
 
+
 class CallableModule:
     """A class that makes the module callable."""
 
